@@ -139,7 +139,17 @@ PrinceJS.Game.prototype = {
     PrinceJS.Utils.updateQuery();
   },
 
+  shutdown: function () {
+    if (this.party) {
+      this.party.destroy();
+      this.party = null;
+    }
+  },
+
   update: function () {
+    if (this.party) {
+      this.party.update();
+    }
     if (PrinceJS.Utils.continueGame(this.game)) {
       this.buttonPressed();
       let pos = PrinceJS.Utils.effectivePointer(this.game);
@@ -723,6 +733,9 @@ PrinceJS.Game.prototype = {
   },
 
   changeRoom: function (room, cameraRoom) {
+    if (!this.party && this.level.number === PrinceJS.Party.LEVEL && room === PrinceJS.Party.ROOM) {
+      this.party = new PrinceJS.Party(this.game, this);
+    }
     this.setupCamera(room, cameraRoom);
     if (this.currentRoom === room) {
       return;

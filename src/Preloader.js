@@ -13,7 +13,7 @@ PrinceJS.Preloader.prototype = {
     );
     this.text.anchor.setTo(0.5, 0.5);
 
-    this.load.atlasJSONHash("kid", "assets/gfx/kid.png", "assets/gfx/kid.json");
+    this.load.atlasJSONHash("kid", "assets/gfx/angela.png", "assets/gfx/kid.json");
     this.load.atlasJSONHash("princess", "assets/gfx/princess.png", "assets/gfx/princess.json");
     this.load.atlasJSONHash("vizier", "assets/gfx/vizier.png", "assets/gfx/vizier.json");
     this.load.atlasJSONHash("mouse", "assets/gfx/mouse.png", "assets/gfx/mouse.json");

@@ -23,7 +23,7 @@ PrinceJS.Title.prototype = {
       this.game.sound.play("PrologueA");
     });
 
-    this.presents = this.game.add.image(this.world.centerX, this.world.centerY + 29.5, "title", "presents");
+    this.presents = this.game.add.image(this.world.centerX, this.world.centerY + 29.5, "title-presents");
     this.presents.anchor.setTo(0.5, 0.5);
     this.presents.visible = false;
 
@@ -31,7 +31,11 @@ PrinceJS.Title.prototype = {
     this.author.anchor.setTo(0.5, 0.5);
     this.author.visible = false;
 
-    this.prince = this.game.add.image(0, 0, "title", "prince");
+    this.remix = this.game.add.image(this.world.centerX - 3, this.world.centerY + 37, "title-remix");
+    this.remix.anchor.setTo(0.5, 0.5);
+    this.remix.visible = false;
+
+    this.prince = this.game.add.image(0, 0, "title-logo");
     this.prince.visible = false;
 
     this.textBack = this.game.add.image(0, this.world.height, "title", "in_the_absence");
@@ -71,6 +75,12 @@ PrinceJS.Title.prototype = {
         break;
       case 730:
         this.author.visible = false;
+        break;
+      case 780:
+        this.remix.visible = true;
+        break;
+      case 980:
+        this.remix.visible = false;
         break;
       case 1030:
         this.prince.visible = true;

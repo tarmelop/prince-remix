@@ -33,6 +33,9 @@ PrinceJS.Preloader.prototype = {
     this.load.atlasJSONHash("general", "assets/gfx/general.png", "assets/gfx/general.json");
     this.load.atlasJSONHash("sword", "assets/gfx/sword.png", "assets/gfx/sword.json");
     this.load.atlasJSONHash("title", "assets/gfx/title.png", "assets/gfx/title.json");
+    this.load.image("title-logo", "assets/gfx/title-logo.png");
+    this.load.image("title-presents", "assets/gfx/title-presents.png");
+    this.load.image("title-remix", "assets/gfx/title-remix.png");
     this.load.atlasJSONHash("cutscene", "assets/gfx/cutscene.png", "assets/gfx/cutscene.json");
     this.load.json("kid-anims", "assets/anims/kid.json");
     this.load.json("sword-anims", "assets/anims/sword.json");

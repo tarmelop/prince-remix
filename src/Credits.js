@@ -20,7 +20,7 @@ PrinceJS.Credits.prototype = {
       .tween(this.textBack)
       .to({ alpha: 1 }, 2000, Phaser.Easing.Linear.None, false, 0, 0, false);
 
-    this.back = this.game.add.image(0, this.world.height, "title", "prince");
+    this.back = this.game.add.image(0, this.world.height, "title-logo");
     this.back.anchor.setTo(0, 1);
 
     this.cropRect = new Phaser.Rectangle(0, 0, 0, this.back.height);

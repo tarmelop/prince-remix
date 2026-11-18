@@ -35,7 +35,8 @@ const PEARL = [236, 232, 220];
 const PANTS = [124, 46, 66];
 const PANTS_EDGE = [164, 76, 96];
 
-const HAIR_LENGTH = 9; // pixels of hair hanging below the head
+const HAIR_LENGTH = 7; // pixels of hair hanging below the head
+const BACK_THICKNESS = 1; // extra pixels of hair added behind her back and head
 const TOP_RATIO = 0.42; // share of the clothed height that is the top
 
 function frameTools(frame) {
@@ -159,7 +160,8 @@ function processFrame(name, frame) {
     }
     // Slightly narrower at the tips
     const w = dy > HAIR_LENGTH - 2 ? width - 1 : width;
-    for (let i = 0; i < w; i++) {
+    // i = -1 is the extra column behind her back that makes the hair thicker
+    for (let i = -BACK_THICKNESS; i < w; i++) {
       const x = backEdge - i;
       const c = t.colorKey(x, y);
       // Hair falls behind arms and face, over the back of the top
@@ -168,7 +170,21 @@ function processFrame(name, frame) {
           continue;
         }
         const streak = (x + dy) % 3 === 0;
-        t.set(x, y, i === 0 ? HAIR_DARK : streak ? HAIR_STREAK : HAIR_BASE);
+        t.set(x, y, i === -BACK_THICKNESS ? HAIR_DARK : streak ? HAIR_STREAK : HAIR_BASE);
+      }
+    }
+  }
+
+  // 2b. Thicken the back of the head the same way
+  for (let y = 0; y <= headBottom; y++) {
+    const rowHair = head.filter(([, hy]) => hy === y).map(([hx]) => hx);
+    if (!rowHair.length) {
+      continue;
+    }
+    const edge = Math.max(...rowHair);
+    for (let i = 1; i <= BACK_THICKNESS; i++) {
+      if (t.get(edge + i, y) && t.colorKey(edge + i, y) === null && y > Math.min(...head.map(([, hy]) => hy))) {
+        t.set(edge + i, y, HAIR_DARK);
       }
     }
   }
